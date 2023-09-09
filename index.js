@@ -13,16 +13,21 @@ app.get('/',(req,res)=>{
     res.send('omo')
 })
 app.get('/api', (req, res) => {
-    const body = req.query
-    const date = new Date()
-    const utc_time = date.toISOString().split('.')[0] + "Z"
-    const github_file_url = "https://github.com/raji2004/zuri-backend/blob/main/index.js"
-    const github_repo_url = "https://github.com/raji2004/zuri-backend"
-    const status_code = 200
-    const slack_name = body.slack_name
-    const track = body.track
-    res.status(200).json({slack_name,track ,current_day: "Saturday", utc_time,github_file_url,github_repo_url,status_code,  });
-});
+    const { slack_name = 'Not provided, Check spelling maybe',
+        track = 'Not provided, Check spelling maybe' } = req.query;
+    const date = new Date();
+    return res.status(200).json({
+        slack_name,
+        "current_day": date.toLocaleString(
+            'default', { weekday: 'long' }
+        ),
+        "utc_time": date.toISOString().split('.')[0] + "Z",
+        track: track.toLowerCase(),
+        "github_file_url": "https://github.com/samuelIkoli/hngx-s1/blob/main/index.js",
+        "github_repo_url": "https://github.com/samuelIkoli/hngx-s1",
+        "status_code": 200
+    })
+})
 
 // Start the server
 app.listen(port, () => {
