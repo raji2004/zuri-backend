@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
     const github_file_url = "https://github.com/raji2004/zuri-backend/index.js"
     const github_repo_url = "https://github.com/raji2004/zuri-backend"
     const status_code = 200
-    res.status(200).json({ current_day: "Saturday", utc_time,github_file_url,github_repo_url,status_code, ...body });
+    res.status(200).json({ ...body,current_day: "Saturday", utc_time,github_file_url,github_repo_url,status_code,  });
 });
 
 // Start the server
