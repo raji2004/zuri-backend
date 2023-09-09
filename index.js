@@ -9,9 +9,9 @@ app.use(express.json());
 
 
 // Define a route
-app.get('/',(req,res)=>{
-    res.send('omo')
-})
+// app.get('/',(req,res)=>{
+//     res.send('omo')
+// })
 app.get('/api', (req, res) => {
     const { slack_name = 'Not provided, Check spelling maybe',
         track = 'Not provided, Check spelling maybe' } = req.query;
