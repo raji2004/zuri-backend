@@ -3,6 +3,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Define a route
+app.get('/',(req,res)=>{
+    res.send('omo')
+})
 app.get('/api', (req, res) => {
     const body = req.query
     const date = new Date()
