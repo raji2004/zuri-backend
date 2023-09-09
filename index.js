@@ -1,18 +1,17 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
 
+const port = process.env.PORT || 3000;
 
+app.get('/', (req, res) => {
+    return res.status(200).send('HNG X task 1, check /api for the task')
+})
 
-// Define a route
-// app.get('/',(req,res)=>{
-//     res.send('omo')
-// })
-app.get('api/', (req, res) => {
+app.get('/api', (req, res) => {
     const { slack_name = 'Not provided, Check spelling maybe',
         track = 'Not provided, Check spelling maybe' } = req.query;
     const date = new Date();
@@ -27,10 +26,8 @@ app.get('api/', (req, res) => {
         "github_repo_url": "https://github.com/raji2004/zuri-backend",
         "status_code": 200
     })
-
 })
 
-// Start the server
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`app is listening on port ${port}`)
 });
