@@ -27,6 +27,7 @@ app.get('/api', (req, res) => {
         "github_repo_url": "https://github.com/samuelIkoli/hngx-s1",
         "status_code": 200
     })
+    
 })
 
 // Start the server
