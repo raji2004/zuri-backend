@@ -12,7 +12,7 @@ app.use(express.json());
 // app.get('/',(req,res)=>{
 //     res.send('omo')
 // })
-app.get('/api', (req, res) => {
+app.get('api/', (req, res) => {
     const { slack_name = 'Not provided, Check spelling maybe',
         track = 'Not provided, Check spelling maybe' } = req.query;
     const date = new Date();
