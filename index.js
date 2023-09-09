@@ -3,7 +3,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Define a route
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     const body = req.query
     const date = new Date()
     const utc_time = date.toISOString().split('.')[0] + "Z"
