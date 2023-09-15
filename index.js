@@ -1,40 +1,20 @@
+
 const express = require('express');
-const app = express();
+const MainRouter = require('./routes');
 
-// Middleware to parse URL-encoded and JSON request bodies
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+const bodyParser = require('body-parser')
+const server = express();
 
-const port = process.env.PORT || 3000;
+server.use(bodyParser.json());
+server.use('/api', MainRouter);
 
-app.get('/', (req, res) => {
-  res.status(200).send('HNG X task 1, check /api for the task');
-});
+server.get('/', (req, res) => {
+    return res.json({ 
+        message: "Move to the /api route for all the endpoints"
+    })
+})
 
-app.get('/api', (req, res) => {
-  try {
-    const { slack_name = 'Not provided', track = 'Not provided' } = req.query;
-    const date = new Date();
 
-    const responseData = {
-      slack_name,
-      current_day: date.toLocaleString('default', { weekday: 'long' }),
-      utc_time: date.toISOString().split('.')[0] + 'Z',
-      track: track.toLowerCase(),
-      github_file_url:
-        'https://github.com/raji2004/zuri-backend/blob/main/index.js',
-      github_repo_url: 'https://github.com/raji2004/zuri-backend',
-      status_code: 200,
-    };
 
-    res.status(200).json(responseData);
-  } catch (error) {
-    // Handle errors and log them
-    console.error(error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
 
-app.listen(port, () => {
-  console.log(`App is listening on port ${port}`);
-});
+server.listen(process.env.PORT || 3000);
